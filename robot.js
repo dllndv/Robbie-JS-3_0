@@ -431,12 +431,14 @@ function saveFile(shouldSaveAs, fromSaveAs) {
 	}
 }
 
-function closePopovers(){
-	$('#saveButton').popover('hide');
-	$('#saveAsButton').popover('hide');
-	$('#saveSuccess').popover('hide');
-	$('#saveAsSuccess').popover('hide');
-	$('#loadButton').popover('hide');
+function closePopovers(button){
+	if (button == 'hideSaveAs' || button == 'hideLoad') {
+		$('#saveAsButton').popover('hide');
+		$('#loadButton').popover('hide');
+	}
+	else{
+		$(button).click();
+	}
 }
 
 function openFile(){
@@ -459,7 +461,7 @@ function openFile(){
 
 function readFile() {
 	var selector = getId('fileList');
-	closePopovers();
+	closePopovers('#loadButton');
 	resetRobbie();
 	clearCode();
 	clearOutput();

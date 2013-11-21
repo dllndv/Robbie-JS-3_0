@@ -239,8 +239,8 @@
         <span class="help-inline" id="saveSuccess">&nbsp;</span>
       </div>
       <button type="button" onclick="saveFile(true, true)" id="saveOk" class="btn btn-primary">OK</button>
-      <button type="button" onclick="closePopovers()" id="saveCancel" class="btn btn-default">Cancel</button>
-      <button type="button" onclick="closePopovers()" id="saveFinalOk" class="btn btn-primary hidden">OK</button>
+      <button type="button" onclick="closePopovers('#saveAsButton')" id="saveCancel" class="btn btn-default">Cancel</button>
+      <button type="button" onclick="closePopovers('#saveAsButton')" id="saveFinalOk" class="btn btn-primary hidden">OK</button>
     </div>
 
     <div id="loadPopcontent" style="display: none">
@@ -251,7 +251,7 @@
       </div>
       <div id="loadButtonBar">
         <button type="button" onclick="readFile()" id="loadOk" class="btn btn-primary">Open</button>
-        <button type="button" onclick="closePopovers()" id="loadCancel" class="btn btn-default">Cancel</button>
+        <button type="button" onclick="closePopovers('#loadButton')" id="loadCancel" class="btn btn-default">Cancel</button>
       </div>
     </div>
 
@@ -264,12 +264,12 @@
       })
 
       $('#loadButton').on('show.bs.popover', function () {
-        closePopovers();
+        closePopovers("hideSaveAs");
         openFile();
       })
 
       $('#saveAsButton').on('show.bs.popover', function () {
-        closePopovers();
+        closePopovers("hideLoad");
       })
 
         $('#saveAsButton').popover({ 
