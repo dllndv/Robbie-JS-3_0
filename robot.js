@@ -431,10 +431,17 @@ function saveFile(shouldSaveAs, fromSaveAs) {
 	}
 }
 
+var hasOpen = false;
 function closePopovers(button){
-	if (button == 'hideSaveAs' || button == 'hideLoad') {
-		$('#saveAsButton').popover('hide');
-		$('#loadButton').popover('hide');
+	if (button == 'hideSaveAs'){
+		if (hasOpen) {
+			$('#saveAsButton').click();	
+		}
+	}
+	if (button == 'hideLoad') {
+		if (hasOpen) {
+			$('#loadButton').click();
+		}
 	}
 	else{
 		$(button).click();

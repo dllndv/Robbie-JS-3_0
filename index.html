@@ -268,8 +268,24 @@
         openFile();
       })
 
+      $('#loadButton').on('shown.bs.popover', function () {
+        hasOpen = true;
+      })
+
+      $('#loadButton').on('hidden.bs.popover', function () {
+        hasOpen = false;
+      })
+
       $('#saveAsButton').on('show.bs.popover', function () {
         closePopovers("hideLoad");
+      })
+
+      $('#saveAsButton').on('shown.bs.popover', function () {
+        hasOpen = true;
+      })
+
+      $('#saveAsButton').on('hidden.bs.popover', function () {
+        hasOpen = false;
       })
 
         $('#saveAsButton').popover({ 
