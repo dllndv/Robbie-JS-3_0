@@ -39,12 +39,6 @@
 	border-bottom: 1px solid #eea236;
 }
 
-#instrColor{
-	background-color: #f0ad4e;
-	height: 62px;
-	border-bottom: 1px solid #eea236;
-}
-
 #codeColor{
 	background-color: #5bc0de;
 	height: 62px;
@@ -63,10 +57,23 @@
 #editor { 
         position: absolute;
         top: 62px;
-        right: 0;
         bottom: 51px;
         left: 0;
-    }
+        right: 0;
+        width: calc(100% - 530px);
+        border-right: 1px solid #222;
+}
+
+#robbieArea{
+	width: 490px;
+	max-height: calc(100% - 120px);
+	right: 0;
+	position: absolute;
+	margin-right: 20px;
+	margin-left: 20px;
+	overflow-y: auto;
+}
+
 .actionButtonsContainer{
 	position: absolute;
 	bottom: 0;

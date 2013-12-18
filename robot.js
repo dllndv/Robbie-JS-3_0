@@ -214,7 +214,6 @@ function keyDown(evt)
 
 
 function runCode() {
-	setTimeout(function(){
 	// Remove the old script tag.
 	var script = getId('funcScript');
 	var scriptParent = script.parentNode;
@@ -236,7 +235,6 @@ function runCode() {
 
 	// Execute the queue.
 	runQueue();
-	}, 1000);
 }
 
 function runQueue() {
@@ -448,22 +446,33 @@ function closePopovers(button){
 	}
 }
 
+var lastNumberOfFiles    = 0;
+var currentNumberOfFiles = 0;
 function openFile(){
 	var selector = document.getElementById('fileList');
-	var defaultSet = false;
-	for(var retrievedFileName in localStorage){
-		if(retrievedFileName.indexOf(htPrefix) == 0){
-			retrievedFileName = retrievedFileName.substring(4);
-			var anOption = document.createElement('option');
-			anOption.value = retrievedFileName;
-			anOption.innerHTML = retrievedFileName;
-			if(!defaultSet){
-				anOption.selected = 'selected';
-				defaultSet = true;
+	selector.innerHTML = '';
+	// console.log(selector.length + "first")
+	// currentNumberOfFiles = selector.length
+	// if (currentNumberOfFiles == 0 || cu){
+		var defaultSet = false;
+		for(var retrievedFileName in localStorage){
+			if(retrievedFileName.indexOf(htPrefix) == 0){
+				retrievedFileName = retrievedFileName.substring(4);
+				var anOption = document.createElement('option');
+				anOption.value = retrievedFileName;
+				anOption.innerHTML = retrievedFileName;
+				if(!defaultSet){
+					anOption.selected = 'selected';
+					defaultSet = true;
+				}
+				selector.appendChild(anOption);
 			}
-			selector.appendChild(anOption);
 		}
-	}
+	// 			console.log(selector.length + "second")
+	// }
+	// else{
+	// 	return;
+	// }
 }
 
 function readFile() {
@@ -481,9 +490,9 @@ function readFile() {
 		var rawData = localStorage[htPrefix+curFileName];
 		var selectedData = JSON.parse(localStorage[htPrefix+curFileName]);
 		setup(selectedData[0]);
+		setActiveAssignButton(unescape(selectedData[0]));
 		editor.setValue(unescape(selectedData[1]));
 		editor.gotoLine(1);
-		setActiveAssignButton(unescape(selectedData[0]));
 	}
 	selector.innerHTML = '';
 }

@@ -45,7 +45,7 @@
   <body onload="setup()">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <!-- <div class="navbar-header"> -->
-        <h3 id="headerTitle">Robbie JS <span class="sub">3.0 BETA</span></h3>
+        <h3 id="headerTitle">Robbie JS <span class="sub">3.1 BETA</span></h3>
       <!-- </div> -->
     </nav>
     <div id="leftInstructions">
@@ -195,10 +195,18 @@
     <div id="codeColor">
       <h2 class="titles">Code</h2>
     </div>
-      <div id="editor"></div>
+        <div id="editor"></div>
+        <div id="robbieArea">
+          <h3>Robbie The Robot</h3>
+          <div id="arena" title="Robot Arena"></div>
+          <h3>Print Messages</h3>
+          <div id="output" class="debugDisplay" title="Debug Messages"></div>
+        </div>
       <div class="actionButtonsContainer">
         <div class="actionButtons">
           <button type="button" class="btn btn-success" onclick="runCode()" data-toggle="modal" data-target="#robbie"><span class="glyphicon glyphicon-play"></span> Run</button>
+
+          <button type="button" class="btn btn-primary" onclick="resetRobbie()"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
 
           <button type="button" class="btn btn-danger"onclick="resetRobbie(); clearOutput(); clearCode()"><span class="glyphicon glyphicon-trash"></span> Clear</button>
 
@@ -209,26 +217,6 @@
           <button type="button" id="loadButton" class="btn btn-primary" data-placement="top"  title data-original-title="Load File"><span class="glyphicon glyphicon-folder-open" style="right: 3px"></span> Load</button>
         </div>
       </div>
-      <!-- Robbie Modal -->
-      <div class="modal fade" id="robbie" tabindex="-1" role="dialog" aria-labelledby="robbieModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-            <!-- Possibly delete this button? -->
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">Robbie The Robot</h4>
-            </div>
-            <div class="modal-body">
-              <div id="arena" title="Robot Arena"></div>
-              <h3>Print Messages</h3>
-              <div id="output" class="debugDisplay" title="Debug Messages"></div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" onclick="resetRobbie(); runCode()"><span class="glyphicon glyphicon-refresh"></span> Reset and Run</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
     </div>
 
     <div id="savePopcontent" style="display: none">
@@ -257,11 +245,6 @@
 
     <script src="ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
-      $('#robbie').on('hidden.bs.modal', function () {
-        setTimeout(function(){
-          resetRobbie();
-        },1000);
-      })
 
       $('#loadButton').on('show.bs.popover', function () {
         closePopovers("hideSaveAs");
